@@ -372,7 +372,7 @@ def output_text(n_clicks, _no_of_cntry, _hgh_or_lw, _feature, _cntry_name, _tabs
 ##########################
 # app
 company_logo = html.A(dbc.CardImg(src="assets/images/Canary_logo_White-01.svg", top=True, className='image_link'), href='https://www.canarydetect.com/', target="_blank", className='image_1')
-#linkedin = html.A(dbc.CardImg(src="assets/images/linkedin.svg", top=True, className='image_link'), href='', target="_blank")
+company_logo_footer = html.A(dbc.CardImg(src="assets/images/Canary_logo_White-01.svg", top=True, className='image_link_footer'), href='https://www.canarydetect.com/', target="_blank", className='image_link_footer')
 #kaggle = html.A(dbc.CardImg(src="assets/images/kaggle.svg", top=True, className='image_link'), href='', target="_blank")
 #medium = html.A(dbc.CardImg(src="assets/images/medium.png", top=True, className='image_link'), href='', target="_blank")
 
@@ -382,13 +382,13 @@ profile_links_top = dbc.Row([dbc.Col(company_logo, width=20, className='link_col
   #                           dbc.Col(medium, width=2, className='link_col'),
                             ], className='link_icons')
 
-profile_links = dbc.Row([dbc.Col(width=10, className='link_col'),
-                        dbc.Col(company_logo, width=10, className='link_col'),
+#profile_links = dbc.Row([dbc.Col(company_logo_footer,width=40, className='link_col'),
+                        #dbc.Col(company_logo_footer, width=20, className='link_col'),
       #                   dbc.Col(linkedin, width=2, className='link_col'),
      #                    dbc.Col(kaggle, width=2, className='link_col'),
      #                    dbc.Col(medium, width=2, className='link_col'),
     #                     dbc.Col(width=2, className='link_col')
-                         ], className='link_icons')
+         #                ], className='link_icons')
 
 
 heading = html.Div(dbc.Row([dbc.Col(html.H3("Canary Global Covid-19 Dashboard for Deep Analysis ( Compatible with desktop)", className='page_title'), width=8, className='header_col1'),
@@ -415,7 +415,7 @@ text_5 = dcc.Markdown("Our team works with key opinion leaders, clinicians, regu
 text_6 = dcc.Markdown("All viruses, including SARS-CoV-2, the virus that causes COVID-19, change over time. Most changes have little to no impact on the virus’ "
                       "properties. However, some changes may affect the virus’s properties, such as how easily it spreads, the associated disease severity, or "
                       "the performance of vaccines, therapeutic medicines, diagnostic tools, or other public health and social measures")
-text_7 = dcc.Markdown(" Saving Lives Through Early Disease Detection")
+
 text_8 = dcc.Markdown(" A [team](https://www.canarydetect.com/about) built around globally-diverse industry experience, sharing a common passion for out the box "
                       "thinking and a drive towards making diagnostic health services widely accessible.  ")
 text_9 = dcc.Markdown("For more information about Canary Global Inc.’s products and services or to speak with someone from our team, please "
@@ -442,8 +442,8 @@ last_update = f'This data was last updated {last_time} hours ago.'
 data_update = dbc.Row(dbc.Col(html.H6(last_update), className='last_update_1'),
                       className='last_update')
 
-footer = html.Div(dbc.Row([dbc.Col([profile_links],className='footer_logo'),html.Div(text_7, className='fot'),], className='footer_container'))
-
+footer = html.Div(dbc.Row([company_logo_footer], className='footer_container'))
+footer_1 = html.Div(dbc.Row([dcc.Markdown(" Saving Lives Through Early Disease Detection" ,style={"padding-top":"10px","padding-bottom":"6px" ,'margin-left': 'auto','margin-right': 'auto'})], className='footer_container'))
 app.layout = html.Div(children=[
     heading,
     fig_map,
@@ -471,7 +471,8 @@ app.layout = html.Div(children=[
                     summary
                     ], width=8),
                 ]), className='table_card_row'),
-        footer
+        footer,
+footer_1
         ])
 
 executor = ThreadPoolExecutor(max_workers=1)

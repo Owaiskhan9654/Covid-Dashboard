@@ -103,6 +103,7 @@ body {
 .header_col2{ background-color: rgba(100,100,100,0.1); padding : 1rem;}
 .page_title{ margin-left: auto; margin-right: auto; color: #FFFFFF}
 .image_link{ height: 4.5rem;  width: 35rem; margin-left: auto; margin-right: auto;padding-left : -5rem;padding-top : -4rem;}
+.image_link_footer{ height: 4.5rem;  width: 15rem; margin:auto}
 .image_1{ margin-left: auto; margin-right: auto;}
 
 /* figure plot */
@@ -196,7 +197,7 @@ body {
 
 .ques{font-size: 1.0rem;}
 .ans{font-size: 0.8rem; color:rgba(100,100,100,0.6)}
-.fot{font-size: 1rem; color:rgba(100,100,100,0.6);padding-left: 47% ;padding-top:5px }
+.fot{font-size: 1rem; color:rgba(100,100,100,0.6);margin: auto; }
 .option_card{
       vertical-align : middle;
       horizontal-align : middle;
