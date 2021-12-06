@@ -376,8 +376,8 @@ def output_text(n_clicks, _no_of_cntry, _hgh_or_lw, _feature, _cntry_name, _tabs
 
 ##########################
 # app
-company_logo = html.A(dbc.CardImg(src="assets/images/Canary_logo_White-01-animation.gif", top=True, className='image_link'), href='https://www.canarydetect.com/', target="_blank", className='image_1')
-company_logo_footer = html.A(dbc.CardImg(src="assets/images/Canary_logo_White-01-animation.gif", top=True, className='image_link_footer'), href='https://www.canarydetect.com/', target="_blank", className='image_link_footer')
+company_logo = html.A(dbc.CardImg(src="assets/images/faster_Canary_logo_White-animation.gif", top=True, className='image_link'), href='https://www.canarydetect.com/', target="_blank", className='image_1')
+company_logo_footer = html.A(dbc.CardImg(src="assets/images/faster_Canary_logo_White-animation.gif", top=True, className='image_link_footer'), href='https://www.canarydetect.com/', target="_blank", className='image_link_footer')
 #kaggle = html.A(dbc.CardImg(src="assets/images/kaggle.svg", top=True, className='image_link'), href='', target="_blank")
 #medium = html.A(dbc.CardImg(src="assets/images/medium.png", top=True, className='image_link'), href='', target="_blank")
 
