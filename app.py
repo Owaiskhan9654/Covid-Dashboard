@@ -97,6 +97,9 @@ def update_data(period=4):
     df_deaths = pd.read_csv('data/time_series_covid19_deaths_global.csv')
     time.sleep(period*60*60)
     # print('updating data...')
+    os.remove('data/covid-variants.csv')
+    wget.download('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/variants/covid-variants.csv', './data')
+
     define_variables(df_confirmed, df_recovered, df_deaths)
 
 
@@ -106,6 +109,8 @@ if 'time_series_covid19_vaccine_doses_admin_global.csv' not in os.listdir('./dat
     wget.download('https://raw.githubusercontent.com/govex/COVID-19/master/data_tables/vaccine_data/global_data/time_series_covid19_vaccine_doses_admin_global.csv', './data')
 if 'time_series_covid19_deaths_global.csv' not in os.listdir('./data'):
     wget.download('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv', './data')
+if 'covid-variants.csv' not in os.listdir('./data'):
+    wget.download('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/variants/covid-variants.csv', './data')
 
 # importing data
 df_confirmed = pd.read_csv('data/time_series_covid19_confirmed_global.csv')
@@ -168,7 +173,7 @@ fig_map = create_map(df_map)
 fig_map = html.Div(dcc.Graph(figure=fig_map, className='fig_map'), style={'padding':'1.25rem'})
 ############# Variant-map ##################
 
-df_var = pd.read_csv('covid-variants.csv')
+df_var = pd.read_csv('data/covid-variants.csv')
 df_30=df_var[pd.to_datetime(df_var["date"]) > datetime.datetime.now() - pd.to_timedelta("30day")]
 fig_var = create_var(df_30)
 fig_var = html.Div(dcc.Graph(figure=fig_var, className='fig_var'), style={'padding':'1.25rem'})
@@ -371,8 +376,8 @@ def output_text(n_clicks, _no_of_cntry, _hgh_or_lw, _feature, _cntry_name, _tabs
 
 ##########################
 # app
-company_logo = html.A(dbc.CardImg(src="assets/images/Canary_logo_White-01.svg", top=True, className='image_link'), href='https://www.canarydetect.com/', target="_blank", className='image_1')
-company_logo_footer = html.A(dbc.CardImg(src="assets/images/Canary_logo_White-01.svg", top=True, className='image_link_footer'), href='https://www.canarydetect.com/', target="_blank", className='image_link_footer')
+company_logo = html.A(dbc.CardImg(src="assets/images/Canary_logo_White-01-animation.gif", top=True, className='image_link'), href='https://www.canarydetect.com/', target="_blank", className='image_1')
+company_logo_footer = html.A(dbc.CardImg(src="assets/images/Canary_logo_White-01-animation.gif", top=True, className='image_link_footer'), href='https://www.canarydetect.com/', target="_blank", className='image_link_footer')
 #kaggle = html.A(dbc.CardImg(src="assets/images/kaggle.svg", top=True, className='image_link'), href='', target="_blank")
 #medium = html.A(dbc.CardImg(src="assets/images/medium.png", top=True, className='image_link'), href='', target="_blank")
 
@@ -479,7 +484,7 @@ executor = ThreadPoolExecutor(max_workers=1)
 executor.submit(update_data)
 
 if __name__ == '__main__':
-    app.run_server(debug=True,)#dev_tools_ui=False,dev_tools_serve_dev_bundles=False,port="8000")
+    app.run_server(debug=True,dev_tools_ui=False,dev_tools_serve_dev_bundles=False,port="8000")
 
 
 

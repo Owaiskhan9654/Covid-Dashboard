@@ -23,33 +23,6 @@ body {
 
 /* maps */
 
-
-._dash-loading-callback {
-  font-family: sans-serif;
-  padding-top: 50px;
-  color: rgb(90, 90, 90);
-
-  /* The banner */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  cursor: progress;
-
-  opacity: 0;
-  background-color: rgb(171, 167, 167);
-  /* Delay animation by 1s to prevent flashing
-     and smoothly transition the animation over 0.5s
-   */
-  -moz-animation: fadein 0.5s ease-in 1s forwards; /* Firefox */
-  -webkit-animation: fadein 0.5s ease-in 1s forwards; /* Safari and Chrome */
-  -o-animation: fadein 0.5s ease-in 1s forwards; /* Opera */
-    animation: fadein 0.5s ease-in 1s forwards;
-}
-
-
 .fig_map{ background-color: rgba(100,100,100,0.2); padding : 1rem}
 
 .fig_map:hover {
@@ -129,12 +102,8 @@ body {
 .header_col1{ background-color: rgba(100,100,100,0.1); padding : 1rem;}
 .header_col2{ background-color: rgba(100,100,100,0.1); padding : 1rem;}
 .page_title{ margin-left: auto; margin-right: auto; color: #FFFFFF}
-<<<<<<< HEAD
-.image_link{ height: 4.5rem;  width: 35rem; margin-left: auto; margin-right: auto;padding-left : -5rem;padding-top : -4rem;}
+.image_link{ height: 4.5rem;  width: 15rem; margin-left: auto; margin-right: auto;padding-left : -5rem;padding-top : -4rem;}
 .image_link_footer{ height: 4.5rem;  width: 15rem; margin:auto}
-=======
-.image_link{ height: 4.5rem;  width: 25rem; margin-left: auto; margin-right: auto;padding-left : -15rem;padding-top : -4rem;}
->>>>>>> 157d5a9f2782a1ebf989f8b236fe7add685a00bb
 .image_1{ margin-left: auto; margin-right: auto;}
 
 /* figure plot */
@@ -460,3 +429,36 @@ body {
 .container th:nth-child(4) { display: none; }
 }
 
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+._dash-loading-callback {
+  font-family: sans-serif;
+  padding-top: 50px;
+  color: rgb(90, 90, 90);
+
+  /* The banner */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  cursor: progress;
+
+  opacity: 0;
+  background-color: rgb(171, 167, 167);
+  /* Delay animation by 1s to prevent flashing
+     and smoothly transition the animation over 0.5s
+   */
+  -moz-animation: fadein 0.5s ease-in 1s forwards; /* Firefox */
+  -webkit-animation: fadein 0.5s ease-in 1s forwards; /* Safari and Chrome */
+  -o-animation: fadein 0.5s ease-in 1s forwards; /* Opera */
+    animation: fadein 0.5s ease-in 1s forwards;
+}
