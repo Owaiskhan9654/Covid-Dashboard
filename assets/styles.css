@@ -102,8 +102,12 @@ body {
 .header_col1{ background-color: rgba(100,100,100,0.1); padding : 1rem;}
 .header_col2{ background-color: rgba(100,100,100,0.1); padding : 1rem;}
 .page_title{ margin-left: auto; margin-right: auto; color: #FFFFFF}
+<<<<<<< HEAD
 .image_link{ height: 4.5rem;  width: 35rem; margin-left: auto; margin-right: auto;padding-left : -5rem;padding-top : -4rem;}
 .image_link_footer{ height: 4.5rem;  width: 15rem; margin:auto}
+=======
+.image_link{ height: 4.5rem;  width: 25rem; margin-left: auto; margin-right: auto;padding-left : -15rem;padding-top : -4rem;}
+>>>>>>> 157d5a9f2782a1ebf989f8b236fe7add685a00bb
 .image_1{ margin-left: auto; margin-right: auto;}
 
 /* figure plot */
