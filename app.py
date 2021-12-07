@@ -14,8 +14,8 @@ import wget
 import os
 import datetime
 # external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],
-                meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],)
+                #meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1, maximum-scale= 5, minimum-scale=0.4", }])
 
 app.title = 'COVID-19 Dashboard by CANARY GLOBAL INC.'
 
@@ -448,7 +448,7 @@ data_update = dbc.Row(dbc.Col(html.H6(last_update), className='last_update_1'),
                       className='last_update')
 
 footer = html.Div(dbc.Row([company_logo_footer], className='footer_container'))
-footer_1 = html.Div(dbc.Row([dcc.Markdown(" Saving Lives Through Early Disease Detection" ,style={"padding-top":"10px","padding-bottom":"6px" ,'margin-left': 'auto','margin-right': 'auto'})], className='footer_container'))
+footer_1 = html.Div(dbc.Row([dcc.Markdown(" Saving Lives Through Early Disease Detection" ,style={"paddingtop":"10px","paddingbottom":"6px" ,'marginleft': 'auto','marginright': 'auto'})], className='footer_container'))
 app.layout = html.Div(children=[
     heading,
     fig_map,
