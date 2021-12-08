@@ -14,9 +14,9 @@ import wget
 import os
 import datetime
 # external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
                 #meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1, maximum-scale= 5, minimum-scale=0.4", }])
-
+#app = dash.Dash(index_template='home.html')
 app.title = 'COVID-19 Dashboard by CANARY GLOBAL INC.'
 
 server=app.server
@@ -174,8 +174,11 @@ fig_map = html.Div(dcc.Graph(figure=fig_map, className='fig_map'), style={'paddi
 ############# Variant-map ##################
 
 df_var = pd.read_csv('data/covid-variants.csv')
-df_30=df_var[pd.to_datetime(df_var["date"]) > datetime.datetime.now() - pd.to_timedelta("30day")]
-fig_var = create_var(df_30)
+dates=df_var['date']
+df_var.drop(columns=['date'],inplace=True)
+df_var.insert(2,'Dates Till Reported',dates)
+df_7=df_var[pd.to_datetime(df_var["Dates Till Reported"]) > datetime.datetime.now() - pd.to_timedelta("7day")]
+fig_var = create_var(df_7)
 fig_var = html.Div(dcc.Graph(figure=fig_var, className='fig_var'), style={'padding':'1.25rem'})
 ############# Variant-map ##################
 
@@ -428,18 +431,25 @@ text_9 = dcc.Markdown("For more information about Canary Global Inc.’s product
 summary = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody([
                                     html.Div('About this Medical Company', className='ques'),
                                     html.Div(text_3, className='ans'),
+                                    html.Hr(style={'borderColor': 'white', 'border': '1.5'}),
                                     html.Div('Mission', className='ques'),
                                     html.Div(text_4, className='ans'),
+                                    html.Hr(style={'borderColor': 'white', 'border': '1.5'}),
                                     html.Div('Our Vision', className='ques'),
                                     html.Div(text_5, className='ans'),
+                                    html.Hr(style={'borderColor': 'white', 'border': '1.5'}),
                                     html.Div('Our Team', className='ques'),
                                     html.Div(text_8, className='ans'),
+                                    html.Hr(style={'borderColor': 'white', 'border': '1.5'}),
                                     html.Div('About COVID-19 Dashboard BY CANARY GLOBAL INC.', className='ques'),
                                     html.Div(text_2, className='ans'),
+                                    html.Hr(style={'borderColor': 'white', 'border': '1.5'}),
                                     html.Div('Source of the COVID-19 data:', className='ques'),
                                     html.Div(text_1, className='ans'),
+                                    html.Hr(style={'borderColor': 'white', 'border': '1.5'}),
                                     html.Div('Contact Us', className='ques'),
                                     html.Div(text_9, className='ans'),
+                                    html.Hr(style={'borderColor': 'white', 'border': '1.5'}),
                                     ]), className='figure_summary'), className='figure_rows'))
 
 last_time = np.random.randint(6, 24)
@@ -448,7 +458,7 @@ data_update = dbc.Row(dbc.Col(html.H6(last_update), className='last_update_1'),
                       className='last_update')
 
 footer = html.Div(dbc.Row([company_logo_footer], className='footer_container'))
-footer_1 = html.Div(dbc.Row([dcc.Markdown(" Saving Lives Through Early Disease Detection" ,style={"paddingtop":"10px","paddingbottom":"6px" ,'marginleft': 'auto','marginright': 'auto'})], className='footer_container'))
+footer_1 = html.Div(dbc.Row([dcc.Markdown(" Saving Lives Through Early Disease Detection" ,className='footer_container_line')], className='footer_container'))
 app.layout = html.Div(children=[
     heading,
     fig_map,
@@ -482,8 +492,8 @@ footer_1
 
 executor = ThreadPoolExecutor(max_workers=1)
 executor.submit(update_data)
-
 if __name__ == '__main__':
+
     app.run_server(debug=True,dev_tools_ui=False,dev_tools_serve_dev_bundles=False,port="8000")
 
 

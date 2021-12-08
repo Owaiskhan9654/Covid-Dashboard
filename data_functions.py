@@ -3,7 +3,7 @@ import plotly.express as px
 import pandas as pd
 import numpy as np
 
-color_dict = {0:'rgba(156, 58, 255, 1)', 1:'rgba(80, 247, 138, 1)',
+color_dict = {0:'rgb(0, 119, 255,1)', 1:'rgba(80, 247, 138, 1)',
               2:'rgba(247, 80, 80, 1)', 3:'rgba(253, 241, 73, 1)'}
 
 case_dict = {0:'Confirmed', 1:'Vaccinated', 2:'Deceased'}
@@ -110,9 +110,9 @@ def create_map(df_map):
         locations=df_map['iso_code'],
         z=df_map['Confirmed'].astype(float),
         colorscale='icefire',
-        text=df_map['text'],  # hover text
+        text=df_map['text'],# hover text
         marker_line_color='gray',  # line markers between states
-        colorbar_title='Total cases',
+        colorbar_title='Covid World Cases ',
 
     ), layout=go.Layout(template='plotly_dark'))
 
@@ -123,11 +123,17 @@ def create_map(df_map):
 
     return fig_map
 def create_var(df_30):
-    fig_var = go.Figure(px.line(df_30, x="location", y="num_sequences", animation_group="variant",
-                            color="variant", hover_name="location",hover_data=['date'],
-                            title=" Different variant in Past 30 Days.(Toggle over the Graph line)", template='plotly_dark'))  # )
+    df_30=df_30.rename(columns={'variant':'Variants','location':'Location','num_sequences':'Number of Sequence Reported','perc_sequences':'Percentage Variants'})
+    fig_var = go.Figure(px.scatter_matrix(df_30,# x="location", y="num_sequences", animation_group="variant",
+                            color="Variants", hover_name="Location",hover_data=['Dates Till Reported'],size ="Number of Sequence Reported",
+                            dimensions=["Variants", "Location", "Number of Sequence Reported", "Percentage Variants"],
+                            title=" Different variant in Past 3 Days.(Toggle over the Graph line)", template='plotly_dark'))  # )
 
-    fig_var.update_layout(barmode='group', hovermode='x',autosize=True, height=600)
+    fig_var.update_layout(barmode='group', hovermode='x',autosize=True, height=1000)
+    '''fig_var.update_layout(
+        updatemenus=[dict(buttons=list([dict(args=["type", "surface"],label="3D Surface",method="restyle"),dict(args=["type", "heatmap"],label="Heatmap",method="restyle")]),
+                          direction="down",pad={"r": 20, "t": 20},showactive=True,
+                    x=0.1,xanchor="left",y=1.1,yanchor="top"),])'''
     return fig_var
 
 def create_var_all(df):
@@ -152,7 +158,7 @@ def create_var_all(df):
 def create_sunburst(df, feature):
     title = f'Sunburst plot for global {feature.lower()} cases'
     if feature=='Confirmed':
-        cc='purple'
+        cc='blue'
     elif feature=='vaccinated':
         cc='green'
     else:

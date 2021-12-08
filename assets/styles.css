@@ -98,6 +98,7 @@ body {
 .link_col{margin: 0 0 0 1.4rem}
 .header_container{ background-color: rgba(100,100,100,0.1); margin : 1.5rem}
 .footer_container{ background-color: rgba(100,100,100,0.1); margin : 1.5rem}
+.footer_container_line{ background-color: rgba(100,100,100,0.0);justify-content: center; text-align: center ; height: 1.5rem;  width: 25rem; margin:auto}
 .footer_logo{ background-color: rgba(100,100,100,0.1); padding-left:46%}
 .header_col1{ background-color: rgba(100,100,100,0.1); padding : 1rem;}
 .header_col2{ background-color: rgba(100,100,100,0.1); padding : 1rem;}
@@ -136,10 +137,12 @@ body {
 }
 
 .figure_confirmed:hover {
-    background-color: rgba(156, 58, 255, 0.2);
+    background-color: rgb(0, 60, 255);
     color: #1F2739;
     font-weight: bold;
-    box-shadow: #3C1A7F -1px 1px, #3C1A7F -2px 2px, #3C1A7F -3px 3px, #3C1A7F -4px 4px, #3C1A7F -5px 5px, #3C1A7F -6px 6px;
+    box-shadow: rgba(11, 44, 117, 0.96) -1px 1px, rgba(11, 44, 117, 0.96) -2px 2px,
+    rgba(11, 44, 117, 0.96) -3px 3px, rgba(11, 44, 117, 0.96) -4px 4px,
+    rgba(11, 44, 117, 0.96) -5px 5px, rgba(11, 44, 117, 0.96) -6px 6px;
     transform: translate3d(6px, -6px, 0);
     transition-delay: 0s;
     transition-duration: var(--time);
@@ -151,7 +154,8 @@ body {
     background-color: rgba(80, 247, 138, 0.2);
     color: #1F2739;
     font-weight: bold;
-    box-shadow: #20773A -1px 1px, #20773A -2px 2px, #20773A -3px 3px, #20773A -4px 4px, #20773A -5px 5px, #20773A -6px 6px;
+    box-shadow: #20773A -1px 1px, #20773A -2px 2px, #20773A -3px 3px, #20773A -4px 4px,
+    #20773A -5px 5px, #20773A -6px 6px;
     transform: translate3d(6px, -6px, 0);
     transition-delay: 0s;
     transition-duration: var(--time);
@@ -210,10 +214,11 @@ body {
 
 
 .card_1:hover {
-    background-color: rgba(156, 58, 255, 0.2);
+    background-color: #2d4e8f;
     color: #1F2739;
     font-weight: bold;
-    box-shadow: #3C1A7F -1px 1px, #3C1A7F -2px 2px, #3C1A7F -3px 3px, #3C1A7F -4px 4px, #3C1A7F -5px 5px, #3C1A7F -6px 6px;
+    box-shadow: rgb(25, 101, 253) -1px 1px, rgb(25, 101, 253) -2px 2px,
+    rgb(25, 101, 253) -3px 3px, rgb(25, 101, 253) -4px 4px, rgb(25, 101, 253) -5px 5px, rgb(25, 101, 253) -6px 6px;
     transform: translate3d(6px, -6px, 0);
     transition-delay: 0s;
     transition-duration: var(--time);
@@ -225,7 +230,8 @@ body {
     background-color: rgba(80, 247, 138, 0.2);
     color: #1F2739;
     font-weight: bold;
-    box-shadow: #20773A -1px 1px, #20773A -2px 2px, #20773A -3px 3px, #20773A -4px 4px, #20773A -5px 5px, #20773A -6px 6px;
+    box-shadow: #20773A -1px 1px, #20773A -2px 2px,
+    #20773A -3px 3px, #20773A -4px 4px, #20773A -5px 5px, #20773A -6px 6px;
     transform: translate3d(6px, -6px, 0);
     transition-delay: 0s;
     transition-duration: var(--time);
@@ -261,7 +267,7 @@ body {
 .card_1_body{
         background-color: rgba(0,0,0,0.1);
         text-align:center;
-        color:#9C3AFF
+        color: #0057ff
 }
 
 .card_2_body{
@@ -370,10 +376,11 @@ body {
 
 /* 2nd column */
 .container td:hover:nth-child(2) {
-    background-color: rgba(156, 58, 255, 0.2);
-    color: #9C3AFF;
+    background-color: rgba(35, 86, 190, 0.96);
+    color: #839fd7;
     font-weight: bold;
-    box-shadow: #3C1A7F -1px 1px, #3C1A7F -2px 2px, #3C1A7F -3px 3px, #3C1A7F -4px 4px, #3C1A7F -5px 5px, #3C1A7F -6px 6px;
+    box-shadow: rgba(25, 49, 98, 0.96) -1px 1px, rgba(25, 49, 98, 0.96) -2px 2px,
+    rgba(25, 49, 98, 0.96) -3px 3px, rgba(25, 49, 98, 0.96) -4px 4px, rgba(11, 44, 117, 0.96) -5px 5px, rgba(11, 44, 117, 0.96) -6px 6px;
     transform: translate3d(6px, -6px, 0);
     transition-delay: 0s;
     transition-duration: var(--time);
@@ -461,4 +468,28 @@ body {
   -webkit-animation: fadein 0.5s ease-in 1s forwards; /* Safari and Chrome */
   -o-animation: fadein 0.5s ease-in 1s forwards; /* Opera */
     animation: fadein 0.5s ease-in 1s forwards;
+}
+
+/* assets/style.css */
+._dash-loading {
+  margin: auto;
+  color: transparent;
+  width: 0;
+  height: 0;
+  text-align: center;
+}
+
+._dash-loading::after {
+  content: '';
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  color: #f5ebeb;
+  vertical-align: text-bottom;
+  border: 0.25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: spinner-border 0.75s linear infinite;
+  animation: spinner-border 0.75s linear infinite;
+  margin-top: 2rem;
 }
