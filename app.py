@@ -13,14 +13,21 @@ import time
 import wget
 import os
 import datetime
+from werkzeug.serving import run_simple
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
+from flask import Flask, redirect, render_template
+
 # external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = Flask(__name__)
+dashApp = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],server=server,url_base_pathname='/dashboard/')
                 #meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1, maximum-scale= 5, minimum-scale=0.4", }])
 #app = dash.Dash(index_template='home.html')
-app.title = 'COVID-19 Dashboard by CANARY GLOBAL INC.'
+dashApp.title = 'COVID-19 Dashboard by CANARY GLOBAL INC.'
 
-server=app.server
-
+#server=app.server
+@server.route('/')
+def hello():
+    return render_template('index1.html')
 
 def define_variables(df_confirmed, df_vaccinated, df_deaths):
     global df_vac
@@ -170,7 +177,10 @@ df_top = df_top.sort_values(by='Confirmed', ascending=False).iloc[:n]
 ################ world-map #################
 df_map = for_map(df_con, df_vac, df_dea)
 fig_map = create_map(df_map)
-fig_map = html.Div(dcc.Graph(figure=fig_map, className='fig_map'), style={'padding':'1.25rem'})
+fig_map = html.Div(dcc.Graph(figure=fig_map, className='fig_map',config = {"displaylogo": False,}), style={'padding':'1.25rem'})
+
+
+
 ############# Variant-map ##################
 
 df_var = pd.read_csv('data/covid-variants.csv')
@@ -179,12 +189,12 @@ df_var.drop(columns=['date'],inplace=True)
 df_var.insert(2,'Dates Till Reported',dates)
 df_7=df_var[pd.to_datetime(df_var["Dates Till Reported"]) > datetime.datetime.now() - pd.to_timedelta("7day")]
 fig_var = create_var(df_7)
-fig_var = html.Div(dcc.Graph(figure=fig_var, className='fig_var'), style={'padding':'1.25rem'})
+fig_var = html.Div(dcc.Graph(figure=fig_var, className='fig_var', config = {"displaylogo": False,}), style={'padding':'1.25rem'})
 ############# Variant-map ##################
 
 
 fig_var_all = create_var_all(df_var)
-fig_var_all = html.Div(dcc.Graph(figure=fig_var_all, className='fig_var'), style={'padding':'1.25rem'})
+fig_var_all = html.Div(dcc.Graph(figure=fig_var_all, className='fig_var',config = {"displaylogo": False,}), style={'padding':'1.25rem'})
 ################ sunburst plot #############
 df_continent = pd.read_csv('https://raw.githubusercontent.com/dbouquin/IS_608/master/NanosatDB_munging/Countries-Continents.csv')
 df_continent.replace('Burkina', 'Burkina Faso', inplace=True)
@@ -207,13 +217,13 @@ fig_sunburst_confirmed = create_sunburst(df_sunburst, 'Confirmed')
 fig_sunburst_vaccinated = create_sunburst(df_sunburst, 'vaccinated')
 fig_sunburst_deaths = create_sunburst(df_sunburst, 'Deaths')
 
-fig_sunburst_confirmed = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(figure=fig_sunburst_confirmed))),
+fig_sunburst_confirmed = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(figure=fig_sunburst_confirmed,config = {"displaylogo": False,}))),
                                              className='figure_confirmed'), className='figure_rows'))
 
-fig_sunburst_vaccinated = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(figure=fig_sunburst_vaccinated))),
+fig_sunburst_vaccinated = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(figure=fig_sunburst_vaccinated,config = {"displaylogo": False,}))),
                                              className='figure_recovered'), className='figure_rows'))
 
-fig_sunburst_deaths = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(figure=fig_sunburst_deaths))),
+fig_sunburst_deaths = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(figure=fig_sunburst_deaths,config = {"displaylogo": False,}))),
                                             className='figure_deceased'), className='figure_rows'))
 
 ############################################
@@ -281,46 +291,46 @@ tabs = dbc.Row(dbc.Col([
 #############################################
 # global data
 
-fig_bar = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_bar'))),
+fig_bar = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_bar',config = {"displaylogo": False,}))),
                                   className='figure_global'), className='figure_rows'))
 
 # cdf
 # fig_global_confirmed_cdf = confirm_cdf(df_con, 0)
-fig_confirmed_cdf = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_confirmed_cdf'))),
+fig_confirmed_cdf = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_confirmed_cdf',config = {"displaylogo": False,}))),
                                             className='figure_confirmed'), className='figure_rows'))
 
 # fig_global_recovered_cdf = confirm_cdf(df_rec, 1)
-fig_recovered_cdf = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_recovered_cdf'))),
+fig_recovered_cdf = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_recovered_cdf',config = {"displaylogo": False,}))),
                                             className='figure_recovered'), className='figure_rows'))
 
 # fig_global_deceased_cdf = confirm_cdf(df_dea, 2)
-fig_deceased_cdf = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_deceased_cdf'))),
+fig_deceased_cdf = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_deceased_cdf',config = {"displaylogo": False,}))),
                                            className='figure_deceased'), className='figure_rows'))
 
 # daily
 # fig_global_confirmed_daily = confirm_daily(df_con, 0)
-fig_confirmed_daily = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_confirmed_daily'))),
+fig_confirmed_daily = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_confirmed_daily',config = {"displaylogo": False,}))),
                                               className='figure_confirmed'), className='figure_rows'))
 
 # fig_global_recovered_daily = confirm_daily(df_rec, 1)
-fig_recovered_daily = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_recovered_daily'))),
+fig_recovered_daily = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_recovered_daily',config = {"displaylogo": False,}))),
                                               className='figure_recovered'), className='figure_rows'))
 
 # fig_global_deceased_daily = confirm_daily(df_dea, 2)
-fig_deceased_daily = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_deceased_daily'))),
+fig_deceased_daily = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_deceased_daily',config = {"displaylogo": False,}))),
                                              className='figure_deceased'), className='figure_rows'))
 
 # rate
 # fig_global_confirmed_rate = confirm_rate(df_con, 0)
-fig_confirmed_rate = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_confirmed_rate'))),
+fig_confirmed_rate = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_confirmed_rate',config = {"displaylogo": False,}))),
                                              className='figure_confirmed'), className='figure_rows'))
 
 # fig_global_recovered_rate = confirm_rate(df_rec, 1)
-fig_recovered_rate = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_recovered_rate'))),
+fig_recovered_rate = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_recovered_rate',config = {"displaylogo": False,}))),
                                              className='figure_recovered'), className='figure_rows'))
 
 # fig_global_deceased_rate = confirm_rate(df_dea, 2)
-fig_deceased_rate = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_deceased_rate'))),
+fig_deceased_rate = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id='fig_deceased_rate',config = {"displaylogo": False,}))),
                                             className='figure_deceased'), className='figure_rows'))
 
 
@@ -337,7 +347,7 @@ fig_deceased_rate = dbc.Row(dbc.Col(dbc.Card(dbc.CardBody(html.Div(dcc.Graph(id=
              confirm_rate(df_dea, c=2)]
 
 
-@app.callback([
+@dashApp.callback([
     Output("fig_bar", "figure"),
     Output("fig_confirmed_cdf", "figure"), Output("fig_recovered_cdf", "figure"),
         Output("fig_deceased_cdf", "figure"),
@@ -459,7 +469,7 @@ data_update = dbc.Row(dbc.Col(html.H6(last_update), className='last_update_1'),
 
 footer = html.Div(dbc.Row([company_logo_footer], className='footer_container'))
 footer_1 = html.Div(dbc.Row([dcc.Markdown(" Saving Lives Through Early Disease Detection" ,className='footer_container_line')], className='footer_container'))
-app.layout = html.Div(children=[
+dashApp.layout = html.Div(children=[
     heading,
     fig_map,
     fig_var,
@@ -492,9 +502,17 @@ footer_1
 
 executor = ThreadPoolExecutor(max_workers=1)
 executor.submit(update_data)
+app = DispatcherMiddleware(server, {
+    '/dash1': dashApp.server,
+})
 if __name__ == '__main__':
+    @server.route('/dashboard')
+    def render_dashboard():
+        return redirect('/dash1')
 
-    app.run_server(debug=True,dev_tools_ui=False,dev_tools_serve_dev_bundles=False,port="8000")
+
+    run_simple('127.0.0.32', 5000, app, use_reloader=True, use_debugger=True)
+    #app.run_server(debug=True,dev_tools_ui=False,dev_tools_serve_dev_bundles=False,port="8000")
 
 
 

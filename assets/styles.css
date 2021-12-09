@@ -35,13 +35,13 @@ body {
                 rgba(0, 67, 93, 0.1) -4px 4px,
                 rgba(0, 67, 93, 0.1) -5px 5px,
                 rgba(0, 67, 93, 0.1) -6px 6px;
-    transform: translate3d(6px, -6px, 0);
+    transform: translate3d(1px, -1px, 0);
     transition-delay: 0s;
     transition-duration: var(--time);
     transition-property: all;
     transition-timing-function: line;
 }
-.fig_var{ background-color: rgba(100,100,100,0.2); padding : 1rem}
+.fig_var{ background-color: rgba(100,100,100,0.2); padding : 0.1rem}
 
 .fig_var:hover {
     background-color: rgb(145, 62, 2);
@@ -53,7 +53,7 @@ body {
                 rgba(0, 67, 93, 0.1) -4px 4px,
                 rgba(0, 67, 93, 0.1) -5px 5px,
                 rgba(0, 67, 93, 0.1) -6px 6px;
-    transform: translate3d(6px, -6px, 0);
+    transform: translate3d(1px, -1px, 0);
     transition-delay: 0s;
     transition-duration: var(--time);
     transition-property: all;
@@ -87,7 +87,7 @@ body {
     color: #1F2739;
     font-weight: bold;
     box-shadow: #111 -1px 1px, #111 -2px 2px, #111 -3px 3px, #111 -4px 4px, #111 -5px 5px, #111 -6px 6px;
-    transform: translate3d(6px, -6px, 0);
+    transform: translate3d(1px, -1px, 0);
     transition-delay: 0s;
     transition-duration: var(--time);
     transition-property: all;
@@ -129,7 +129,7 @@ body {
     color: #1F2739;
     font-weight: bold;
     box-shadow: #111 -1px 1px, #111 -2px 2px, #111 -3px 3px, #111 -4px 4px, #111 -5px 5px, #111 -6px 6px;
-    transform: translate3d(6px, -6px, 0);
+    transform: translate3d(1px, -1px, 0);
     transition-delay: 0s;
     transition-duration: var(--time);
     transition-property: all;
@@ -143,7 +143,7 @@ body {
     box-shadow: rgba(11, 44, 117, 0.96) -1px 1px, rgba(11, 44, 117, 0.96) -2px 2px,
     rgba(11, 44, 117, 0.96) -3px 3px, rgba(11, 44, 117, 0.96) -4px 4px,
     rgba(11, 44, 117, 0.96) -5px 5px, rgba(11, 44, 117, 0.96) -6px 6px;
-    transform: translate3d(6px, -6px, 0);
+    transform: translate3d(1px, -1px, 0);
     transition-delay: 0s;
     transition-duration: var(--time);
     transition-property: all;
@@ -156,7 +156,7 @@ body {
     font-weight: bold;
     box-shadow: #20773A -1px 1px, #20773A -2px 2px, #20773A -3px 3px, #20773A -4px 4px,
     #20773A -5px 5px, #20773A -6px 6px;
-    transform: translate3d(6px, -6px, 0);
+    transform: translate3d(1px, -1px, 0);
     transition-delay: 0s;
     transition-duration: var(--time);
     transition-property: all;
