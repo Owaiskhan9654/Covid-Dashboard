@@ -183,7 +183,7 @@ fig_map = html.Div(dcc.Graph(figure=fig_map, className='fig_map',config = {"disp
 
 ############# Variant-map ##################
 
-df_var = pd.read_csv('data/covid-variants.csv')
+df_var = pd.read_csv('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/variants/covid-variants.csv')
 dates=df_var['date']
 df_var.drop(columns=['date'],inplace=True)
 df_var.insert(2,'Dates Till Reported',dates)
